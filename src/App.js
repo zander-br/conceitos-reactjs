@@ -13,7 +13,14 @@ function App() {
   }, []);
 
   async function handleAddRepository() {
-    // TODO
+    const response = await api.post('repositories', {
+      title: `Novo repository ${Date.now()}`,
+      url: 'https://github.com/zander-br/clean-node-api-typescript',
+      'techs': ['NodeJS', 'Typscript']
+    });
+
+    const repository = response.data;
+    setRepositories([...repositories, repository]);
   }
 
   async function handleRemoveRepository(id) {
